@@ -28,6 +28,7 @@ const style=`
 @media(max-width:700px){#slide-2.color-purpose header{height:auto;font-size:17px;gap:15px;padding-bottom:15px}#slide-2.color-purpose header span:last-child{font-size:13px;white-space:nowrap}#slide-2.color-purpose .slide-body{position:static}.purpose-cards{grid-template-columns:1fr;gap:20px}.purpose-cards article{min-height:0}.purpose-cards h3{font-size:24px}}
 `;
 let html=base.replace(/<section class="slide lh-slide" id="slide-2">[\s\S]*?<\/section>/,section);
+html=html.replace('  candidates.forEach((e,i)=>register', "  candidates.push(...[...slide.querySelectorAll('li')].filter(e=>!e.querySelector('li,button,input,select,table,h1,h2,h3,p')));\n  candidates.forEach((e,i)=>register");
 html=html.replace('</style></head>',style+'</style></head>').replace(/<title>[\s\S]*?<\/title>/,'<title>과업의 목적 · 색상 적용 시안</title>');
 for(const [,s]of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new Function(s);
 const output=path.join(__dirname,'LH_색상적용_시안.html');fs.writeFileSync(output,html);

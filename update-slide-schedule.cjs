@@ -11,7 +11,7 @@ const rows=[
  ['내부 마감 검토','b',6,8],
  ['종합 정리','c',6,10]
 ];
-const milestones=[['착수보고',0],['중간보고',6],['완료보고',10]];
+const milestones=[['착수보고',0],['완료보고',10]];
 const section=`<section class="slide lh-slide sched-view" id="slide-0"><header><span>LH 모듈러주택 중대형평면 개발 연구용역</span><span>SCHEDULE</span></header><h2>추진일정 : 착수일로부터 5개월</h2><div class="slide-body lh-body"><div class="sch"><div class="sch-row sch-head"><p class="sch-task">구분</p><div class="sch-lane">${[1,2,3,4,5].map(m=>`<span>M${m}</span>`).join('')}</div></div>${rows.map(([t,c,s,e])=>`<div class="sch-row"><p class="sch-task">${t}</p><div class="sch-lane"><i class="sch-bar sch-${c}" style="--s:${s};--e:${e}"></i></div></div>`).join('')}<div class="sch-row sch-ms-row"><p class="sch-task">보고</p><div class="sch-lane">${milestones.map(([t,s])=>`<b class="sch-ms" style="--s:${s}"><em>${t}</em></b>`).join('')}</div></div></div><div class="sch-legend"><span class="sch-a">: 평면개발</span><span class="sch-b">: MEP 및 마감검토</span><span class="sch-c">: 공통</span></div></div><footer><span>중대형평면 개발 · KICK-OFF / 협의용 초안</span><span>00 / 0</span></footer></section>`;
 const css=`
 .sched-view>header span{font-size:24px;letter-spacing:0;text-transform:none;color:#17324D}

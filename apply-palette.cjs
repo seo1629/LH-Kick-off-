@@ -39,7 +39,7 @@ html=html.replace('</head>',`<style id="lh-palette">${css}</style></head>`);
 html=html.replace(/<title>[\s\S]*?<\/title>/,'<title>LH Kick-off · 색상표 적용본</title>');
 // Status cells remain editable; only their presentation class changes.
 html=html.replace(/<td>(협의 필요|자료 필요|우선 합의)<\/td>/g,'<td class="lh-pending">$1</td>');
-for(const [,code]of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new Function(code);
+for(const [,code]of html.matchAll(/<script\b(?![^>]*application\/json)[^>]*>([\s\S]*?)<\/script>/g))new Function(code);
 fs.writeFileSync(path.join(root,'LH_색상표적용.html'),html);
 fs.writeFileSync(path.join(root,'LH_색상적용_시안.html'),html);
 fs.writeFileSync(path.join(root,'색상표_적용기준.md'),md);

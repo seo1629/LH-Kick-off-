@@ -30,6 +30,6 @@ const style=`
 let html=base.replace(/<section class="slide lh-slide" id="slide-2">[\s\S]*?<\/section>/,section);
 html=html.replace('  candidates.forEach((e,i)=>register', "  candidates.push(...[...slide.querySelectorAll('li')].filter(e=>!e.querySelector('li,button,input,select,table,h1,h2,h3,p')));\n  candidates.forEach((e,i)=>register");
 html=html.replace('</style></head>',style+'</style></head>').replace(/<title>[\s\S]*?<\/title>/,'<title>과업의 목적 · 색상 적용 시안</title>');
-for(const [,s]of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new Function(s);
+for(const [,s]of html.matchAll(/<script\b(?![^>]*application\/json)[^>]*>([\s\S]*?)<\/script>/g))new Function(s);
 const output=path.join(__dirname,'LH_색상적용_시안.html');fs.writeFileSync(output,html);
 console.log('Color preview created: '+output);

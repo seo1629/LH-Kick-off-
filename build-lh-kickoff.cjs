@@ -106,6 +106,9 @@ html=require('./update-slide-four.cjs').update(html);
 html=require('./update-product-slides.cjs').update(html);
 html=require('./update-slide-schedule.cjs').update(html);
 html=require('./update-deck-tone.cjs').update(html);
+html=require('./update-viewer-light.cjs').update(html);
+html=require('./update-viewer-views.cjs').update(html);
+html=require('./update-embed-models.cjs').update(html);
 const out=path.join(__dirname,'LH_모듈러_Kickoff.html');fs.writeFileSync(out,html);
 // The deployable artifact contains presentation code only, without the editor.
 let publicHtml=html.replace(/\/\/ In-browser slide editing[\s\S]*?<\/script>/,'</script>');
@@ -116,6 +119,6 @@ const publicDir=path.join(__dirname,'lh-kickoff-public');fs.mkdirSync(publicDir,
 fs.writeFileSync(path.join(publicDir,'index.html'),publicHtml);
 fs.copyFileSync(path.join(path.dirname(source),'LICENSES.txt'),path.join(publicDir,'LICENSES.txt'));
 fs.writeFileSync(path.join(publicDir,'vercel.json'),JSON.stringify({cleanUrls:true,headers:[{source:'/(.*)',headers:[{key:'X-Content-Type-Options',value:'nosniff'},{key:'Referrer-Policy',value:'strict-origin-when-cross-origin'}]}]},null,2));
-const scripts=[...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)];
+const scripts=[...html.matchAll(/<script\b(?![^>]*application\/json)[^>]*>([\s\S]*?)<\/script>/g)];
 for(const [,code]of scripts)new Function(code);
 console.log(JSON.stringify({output:out,slides:sections.match(/<section /g).length,scripts: scripts.length,bytes:Buffer.byteLength(html)}));

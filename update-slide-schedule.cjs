@@ -58,7 +58,7 @@ if(require.main===module){
  for(const file of ['LH_모듈러_Kickoff.html','LH_색상표적용.html','LH_색상적용_시안.html','lh-kickoff-public/index.html']){
   const full=path.join(__dirname,file);if(!fs.existsSync(full))continue;
   const html=update(fs.readFileSync(full,'utf8'));
-  for(const [,code]of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new Function(code);
+  for(const [,code]of html.matchAll(/<script\b(?![^>]*application\/json)[^>]*>([\s\S]*?)<\/script>/g))new Function(code);
   fs.writeFileSync(full,html);console.log(file+': schedule slide updated');
  }
 }

@@ -4,7 +4,18 @@ const path=require('node:path');
 const products=[[5,'36'],[6,'46']];
 const total=9;
 const render=k=>`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23E5ECEA'/%3E%3Ctext x='50%25' y='50%25' fill='%2361758A' font-family='sans-serif' font-size='34' text-anchor='middle' dominant-baseline='middle'%3ERENDER ${k}%3C/text%3E%3C/svg%3E`;
-const section=(n,type)=>`<section class="slide lh-slide pd-view" id="slide-${n}"><header><span>LH · MODULAR HOUSING</span><span>PRODUCT EXAMPLE / ${type} TYPE</span></header><h2>당사 개발 상품 예시: ${type}타입 모듈러 주택</h2><div class="slide-body lh-body"><div class="pd-top"><div class="pd-model"><div class="template-model"><div class="model-tools"><label>GLB 불러오기<input class="model-file" type="file" accept=".glb"></label><button data-model-action="rotate" aria-pressed="true">자동 회전</button><button data-model-action="opacity" aria-pressed="false">반투명</button><button data-model-action="fit">화면 맞춤</button><span class="model-name">모델 없음</span></div><div class="template-scene"></div></div></div><aside class="pd-side"><div class="pd-spec"><p class="pd-label">상품</p><h3 class="pd-big">${type}타입</h3><p class="pd-sub">상품명 입력</p></div><div class="pd-spec"><p class="pd-label">모듈 수</p><p class="pd-big">○ 모듈</p><p class="pd-sub">모듈 크기·조합 방식 입력</p></div><div class="pd-feat"><p class="pd-label">상품 특징</p><p class="pd-item">특징 1 입력</p><p class="pd-item">특징 2 입력</p><p class="pd-item">특징 3 입력</p><p class="pd-item">특징 4 입력</p></div></aside></div><div class="pd-roll" aria-label="렌더링 이미지"><div class="pd-track">${[1,2,3,4,5,6].map(i=>{const k=String(i).padStart(2,'0');return `<figure><button type="button" data-image><img data-asset alt="렌더링 이미지 ${k}" src="${render(k)}"></button><figcaption>렌더링 ${k}</figcaption></figure>`}).join('')}</div><button type="button" class="pd-nav pd-prev" aria-label="이전 이미지">‹</button><button type="button" class="pd-nav pd-next" aria-label="다음 이미지">›</button></div></div><footer><span>중대형평면 개발 · KICK-OFF / 협의용 초안</span><span>${String(n).padStart(2,'0')} / ${total}</span></footer></section>`;
+// Rendering images per type, read from assets/renders/<type>/ and embedded as data URIs.
+// Source: 스케치업_이미지_소스/<type>타입_렌더링N.png (webp copies).
+const renders={'36':[['01.webp','주방·거실'],['02.webp','침실']],'46':[['01.webp','거실'],['02.webp','욕실']]};
+const slots=4;
+const figures=type=>{
+ const list=(renders[type]||[]).map(([file,cap])=>[path.join(__dirname,'assets','renders',type,file),cap]).filter(([f])=>fs.existsSync(f));
+ const real=list.map(([f,cap])=>`<figure><button type="button" data-image><img data-asset alt="${type}타입 ${cap} 렌더링" src="data:image/webp;base64,${fs.readFileSync(f).toString('base64')}"></button><figcaption>${cap}</figcaption></figure>`);
+ const empty=Array.from({length:Math.max(0,slots-real.length)},(_,i)=>{const k=String(real.length+i+1).padStart(2,'0');return `<figure><button type="button" data-image><img data-asset alt="렌더링 이미지 ${k}" src="${render(k)}"></button><figcaption>렌더링 ${k}</figcaption></figure>`;});
+ return real.concat(empty).join('');
+};
+// The GLB loader and model name only show in 편집 mode; the presentation keeps view controls only.
+const section=(n,type)=>`<section class="slide lh-slide pd-view" id="slide-${n}"><header><span>LH · MODULAR HOUSING</span><span>PRODUCT EXAMPLE / ${type} TYPE</span></header><h2>당사 개발 상품 예시: ${type}타입 모듈러 주택</h2><div class="slide-body lh-body"><div class="pd-top"><div class="pd-model"><div class="template-model"><div class="model-tools"><button data-model-view="plan">평면</button><button data-model-view="iso">아이소메트릭</button><button data-model-action="rotate" aria-pressed="false">자동 회전</button><button data-model-action="fit">화면 맞춤</button><label class="model-load">GLB 불러오기<input class="model-file" type="file" accept=".glb"></label><span class="model-name">모델 없음</span></div><div class="template-scene"></div></div></div><aside class="pd-side"><div class="pd-spec"><p class="pd-label">상품</p><h3 class="pd-big">${type}타입</h3><p class="pd-sub">상품명 입력</p></div><div class="pd-spec"><p class="pd-label">모듈 수</p><p class="pd-big">○ 모듈</p><p class="pd-sub">모듈 크기·조합 방식 입력</p></div><div class="pd-feat"><p class="pd-label">상품 특징</p><p class="pd-item">특징 1 입력</p><p class="pd-item">특징 2 입력</p><p class="pd-item">특징 3 입력</p><p class="pd-item">특징 4 입력</p></div></aside></div><div class="pd-roll" aria-label="렌더링 이미지"><div class="pd-track">${figures(type)}</div><button type="button" class="pd-nav pd-prev" aria-label="이전 이미지">‹</button><button type="button" class="pd-nav pd-next" aria-label="다음 이미지">›</button></div></div><footer><span>중대형평면 개발 · KICK-OFF / 협의용 초안</span><span>${String(n).padStart(2,'0')} / ${total}</span></footer></section>`;
 const css=`
 .pd-view .lh-body{gap:16px}
 .pd-top{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:20px;height:470px}
@@ -23,6 +34,11 @@ const css=`
 .pd-roll{position:relative;overflow:hidden;height:190px}
 .pd-track{display:flex;gap:16px;height:100%;transition:transform .7s ease}
 .pd-track figure{position:relative;flex:0 0 calc((100% - 48px)/4);height:100%;margin:0}
+.pd-roll.pd-static .pd-nav{display:none}
+.pd-track.pd-flow{transition:none;will-change:transform}
+.pd-view .model-tools .model-load,.pd-view .model-tools .model-name{display:none}
+body.editing .pd-view .model-tools .model-load{display:inline-block}
+body.editing .pd-view .model-tools .model-name{display:inline}
 .pd-track figure>button{display:block;width:100%;height:100%;padding:0;border:0;background:#E5ECEA;cursor:zoom-in}
 .pd-track img{display:block;width:100%;height:100%;object-fit:cover}
 .pd-track figcaption{position:absolute;left:10px;bottom:8px;padding:2px 8px;font-size:13px;color:#FFFFFF;background:rgba(23,50,77,.75);pointer-events:none}
@@ -32,13 +48,14 @@ const css=`
 @media print{.pd-nav{display:none}.pd-track{transform:none!important}}
 `;
 const js=`
-(()=>{document.querySelectorAll('.pd-roll').forEach(roll=>{const track=roll.querySelector('.pd-track'),items=[...track.children];let i=0,hover=false;
-const step=()=>items.length>1?items[1].offsetLeft-items[0].offsetLeft:1;
-const visible=()=>Math.max(1,Math.round((roll.clientWidth+16)/step()));
-const go=k=>{const max=Math.max(0,items.length-visible());i=k>max?0:k<0?max:k;track.style.transform='translateX('+(-items[i].offsetLeft)+'px)';};
-roll.querySelector('.pd-prev').onclick=e=>{e.stopPropagation();go(i-1)};roll.querySelector('.pd-next').onclick=e=>{e.stopPropagation();go(i+1)};
-roll.addEventListener('mouseenter',()=>hover=true);roll.addEventListener('mouseleave',()=>hover=false);
-setInterval(()=>{if(!hover&&!document.body.classList.contains('editing')&&roll.closest('.slide')?.classList.contains('active'))go(i+1)},3500);});})();
+document.querySelectorAll('[data-model-view]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const box=b.closest('.template-model'),f=box&&box.querySelector('.template-scene iframe');if(!f)return;f.contentWindow.postMessage({type:'view',value:b.dataset.modelView},'*');const r=box.querySelector('[data-model-action="rotate"]');if(r)r.setAttribute('aria-pressed','false');}));
+(()=>{document.querySelectorAll('.pd-roll').forEach(roll=>{const track=roll.querySelector('.pd-track'),items=[...track.children];if(items.length<2)return;
+// continuous loop: the strip is doubled and scrolled at 40px/s; pauses on hover, in 편집 mode and on other slides
+roll.classList.add('pd-static');track.classList.add('pd-flow');items.forEach(n=>{const c=n.cloneNode(true);c.setAttribute('aria-hidden','true');track.append(c);});
+let pos=0,last=0,hover=false;roll.addEventListener('mouseenter',()=>hover=true);roll.addEventListener('mouseleave',()=>hover=false);
+const tick=()=>{const time=performance.now(),dt=last?Math.min(time-last,100):0;last=time;const span=track.children[items.length].offsetLeft-items[0].offsetLeft;
+if(span>0&&!hover&&!document.body.classList.contains('editing')&&roll.closest('.slide')?.classList.contains('active')){pos=(pos+dt*.04)%span;track.style.transform='translateX('+(-pos)+'px)';}
+};setInterval(tick,30);});})();
 `;
 function update(html){
  for(const [n,type] of products){
@@ -55,7 +72,7 @@ if(require.main===module){
  for(const file of ['LH_모듈러_Kickoff.html','LH_색상표적용.html','LH_색상적용_시안.html','lh-kickoff-public/index.html']){
   const full=path.join(__dirname,file);if(!fs.existsSync(full))continue;
   const html=update(fs.readFileSync(full,'utf8'));
-  for(const [,code]of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new Function(code);
+  for(const [,code]of html.matchAll(/<script\b(?![^>]*application\/json)[^>]*>([\s\S]*?)<\/script>/g))new Function(code);
   fs.writeFileSync(full,html);console.log(file+': product slides updated');
  }
 }

@@ -117,6 +117,7 @@ publicHtml=publicHtml.replace(/<label[^>]*>GLB 불러오기[\s\S]*?<\/label>/g,'
 publicHtml=publicHtml.replace('const DECK_SOURCE=document.documentElement.cloneNode(true);','');
 const publicDir=path.join(__dirname,'lh-kickoff-public');fs.mkdirSync(publicDir,{recursive:true});
 publicHtml=require('./update-model-files.cjs').publish(publicHtml,publicDir);
+publicHtml=require('./update-public-protect.cjs').update(publicHtml);
 fs.writeFileSync(path.join(publicDir,'index.html'),publicHtml);
 fs.copyFileSync(path.join(path.dirname(source),'LICENSES.txt'),path.join(publicDir,'LICENSES.txt'));
 fs.writeFileSync(path.join(publicDir,'vercel.json'),JSON.stringify({cleanUrls:true,headers:[{source:'/(.*)',headers:[{key:'X-Content-Type-Options',value:'nosniff'},{key:'Referrer-Policy',value:'strict-origin-when-cross-origin'}]}]},null,2));

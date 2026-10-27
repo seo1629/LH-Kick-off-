@@ -57,8 +57,8 @@ const css=`
 .lh-slide .lh-org-top,.lh-slide .lh-org-lead{width:300px;padding:16px 20px}
 .lh-slide .lh-org h3{font-size:30px;line-height:1.3}
 .lh-slide .lh-org-stem{height:70px}
-.lh-slide .lh-org-teams{grid-template-columns:repeat(4,minmax(0,1fr));gap:110px;padding-top:50px}
-.lh-slide .lh-org-teams:before{left:calc((100% - 330px) / 8);right:calc((100% - 330px) / 8);top:0;background:#17324D}
+.lh-slide .lh-org-teams{grid-template-columns:repeat(5,minmax(0,1fr));gap:56px;padding-top:50px}
+.lh-slide .lh-org-teams:before{left:calc((100% - 224px) / 10);right:calc((100% - 224px) / 10);top:0;background:#17324D}
 .lh-slide .lh-org-teams article{min-height:0;padding:20px 16px}
 .lh-slide .lh-org-teams article:before{height:50px;top:-50px;background:#17324D}
 .review-view .review-number{font-weight:700}

@@ -16,7 +16,7 @@ const pages = [
 ['STANDARD PLAN / 75㎡','전용 75㎡ 평면 개발: 4모듈 조합',`<div class="lh-two"><div class="lh-placeholder"><strong>75㎡</strong><span>당사 개발 상품 예시</span><small>4모듈 평면 이미지 삽입 예정</small></div><div>${cards([['FAMILY','3~4인 가구 특화 평면','4모듈 결합으로 가족 구성과 생활 방식에 맞춘 실 구성을 계획합니다.'],['INTERIOR','실내 돌출부 최소화','모듈 결합부로 생기는 기둥·보 돌출이 실내에 드러나지 않도록 구조를 최적화합니다.'],['DAYLIGHT','채광·환기 성능 확보','모듈 배치와 구조 계획을 함께 검토해 채광·환기에 유리한 평면을 만듭니다.']])}</div></div>${note('4모듈 조합과 개발 방향은 과업내용서 기준입니다. 세대 구성·구조 방식·제작 조건은 임의로 확정하지 않습니다.')}`],
 ['DECISIONS & NEXT STEPS','KICK-OFF시 합의할 사항',table(['구분','협의 내용','Follow up'],Array.from({length:8},()=>['&nbsp;','&nbsp;','&nbsp;']))]
 ];
-pages.splice(6,0,['PROJECT ORGANIZATION','과업 수행 조직 및 역할',`<div class="lh-org"><div class="lh-org-top"><h3>LH</h3><h3>담당부서/담당자</h3></div><div class="lh-org-stem"></div><div class="lh-org-lead"><h3>과업 총괄</h3><h3>000</h3></div><div class="lh-org-stem"></div><div class="lh-org-teams">${['건축','구조','MEP','제작'].map(title=>`<article><h3>${title}</h3><h3>000</h3></article>`).join('')}</div></div>`]);
+pages.splice(6,0,['PROJECT ORGANIZATION','과업 수행 조직 및 역할',`<div class="lh-org"><div class="lh-org-top"><h3>LH</h3><h3>담당부서/담당자</h3></div><div class="lh-org-stem"></div><div class="lh-org-lead"><h3>과업 총괄</h3><h3>서혜원</h3></div><div class="lh-org-stem"></div><div class="lh-org-teams">${[['건축','이동건'],['구조','김민경'],['MEP','김윤주'],['제작','000'],['견적','허남수']].map(([title,name])=>`<article><h3>${title}</h3><h3>${name}</h3></article>`).join('')}</div></div>`]);
 const sections=pages.map(([label,title,body],i)=>`<section class="slide lh-slide" id="slide-${i+1}"><header><span>LH · MODULAR HOUSING</span><span>${label}</span></header><h2>${title}</h2><div class="slide-body lh-body">${body}</div><footer><span>중대형평면 개발 · KICK-OFF / 협의용 초안</span><span>${String(i+1).padStart(2,'0')} / ${pages.length}</span></footer></section>`).join('');
 html=html.replace(/<main id="stage">[\s\S]*?<\/main>/,`<main id="stage">${sections}</main>`);
 html=html.replace(/<title>[\s\S]*?<\/title>/,'<title>LH 모듈러주택 중대형평면 · Kick-off</title>');
@@ -108,7 +108,7 @@ html=require('./update-slide-schedule.cjs').update(html);
 html=require('./update-deck-tone.cjs').update(html);
 html=require('./update-viewer-light.cjs').update(html);
 html=require('./update-viewer-views.cjs').update(html);
-html=require('./update-embed-models.cjs').update(html);
+html=require('./update-model-files.cjs').update(html);
 const out=path.join(__dirname,'LH_모듈러_Kickoff.html');fs.writeFileSync(out,html);
 // The deployable artifact contains presentation code only, without the editor.
 let publicHtml=html.replace(/\/\/ In-browser slide editing[\s\S]*?<\/script>/,'</script>');
@@ -116,6 +116,7 @@ publicHtml=publicHtml.replace(' 텍스트를 클릭해 수정할 수 있습니�
 publicHtml=publicHtml.replace(/<label[^>]*>GLB 불러오기[\s\S]*?<\/label>/g,'');
 publicHtml=publicHtml.replace('const DECK_SOURCE=document.documentElement.cloneNode(true);','');
 const publicDir=path.join(__dirname,'lh-kickoff-public');fs.mkdirSync(publicDir,{recursive:true});
+publicHtml=require('./update-model-files.cjs').publish(publicHtml,publicDir);
 fs.writeFileSync(path.join(publicDir,'index.html'),publicHtml);
 fs.copyFileSync(path.join(path.dirname(source),'LICENSES.txt'),path.join(publicDir,'LICENSES.txt'));
 fs.writeFileSync(path.join(publicDir,'vercel.json'),JSON.stringify({cleanUrls:true,headers:[{source:'/(.*)',headers:[{key:'X-Content-Type-Options',value:'nosniff'},{key:'Referrer-Policy',value:'strict-origin-when-cross-origin'}]}]},null,2));

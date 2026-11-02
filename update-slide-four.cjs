@@ -1,13 +1,13 @@
 const fs=require('node:fs');
 const path=require('node:path');
-const title='거주 경험에서 출발하는 4가지 개발 관점';
+const title='상품성을 높이는 4가지 개발 관점';
 const items=[
- ['01','넉넉한 물 쓰는 공간','욕실·주방·세탁이 비좁다','가장 자주 쓰는 공간부터 여유 있게','욕실·주방·세탁실을 하나의 습식 존으로 묶어 치수를 먼저 확보하고, 공장에서 완성도 높게 만들어 현장 작업을 줄입니다.'],
- ['02','생활에 맞춘 면적 배분','같은 면적, 다른 체감','넓혀야 할 곳과 줄여도 될 곳을 구분','거실·작은방·가사 공간은 넉넉하게, 쓰임이 적은 공간은 효율적으로 조정해 같은 면적에서 더 넓게 사는 평면을 만듭니다.'],
- ['03','모듈이 보이지 않는 실내','살다 보면 느껴지는 이질감','일반 아파트와 다르지 않은 실내','기둥·보와 모듈 경계를 벽체와 수납 속에 감추고, 방 크기와 동선이 모듈 경계에서 끊어지지 않도록 나눕니다.'],
- ['04','조용하고 따뜻한 접합부','결로·단열·소음','접합부를 약점이 아닌 기본 성능으로','기밀·단열·차음을 접합 상세의 기준으로 삼고, 기본 성능을 고려한 개구부 상세를 마련합니다.']
+ ['01','평면 상품성','세탁·욕실·주방 불만','3~4Bay 평면, 세탁·욕실·주방 공간 우선 확보','욕실·주방·세탁실을 하나의 습식 존으로 묶어 공간을 먼저 확보하고, 공장에서 완성도 높게 만들어 현장 작업을 줄입니다.'],
+ ['02','모듈 배열','모듈 크기·배열의 한계','가로+세로 복합 배열 검토','제한적인 건축계획을 개선해 상품성을 높이되, 접합부 증가는 3·4모듈 비교에서 함께 검토합니다.'],
+ ['03','접합·구조','결로·단열·소음','퀵커넥터 등 접합 공법, 내화·구조 계획, 설비 모듈화','기밀·단열·차음을 접합 상세의 기준으로 삼고, 설비 배관·전기·통신 배선의 모듈화를 함께 계획합니다.'],
+ ['04','마감','실내 이질감','공장 제작률 70% 이상을 고려한 바닥·벽체 마감재 제안','기둥·보와 모듈 경계가 드러나지 않도록 벽체와 수납으로 정리하고, 공장 완성 범위를 높입니다.']
 ];
-const section=`<section class="slide lh-slide review-view" id="slide-4"><header><span>LH · MODULAR HOUSING</span><span>DEVELOPMENT PERSPECTIVES</span></header><h2>${title}</h2><div class="slide-body lh-body"><p class="lead review-lead">‘모듈러라서 아쉬운 집’이 아니라 ‘모듈러라서 더 잘 만든 집’을 목표로 합니다.</p><div class="review-grid">${items.map(([n,t,e,q,d])=>`<article><p class="review-number">${n}</p><div><h3>${t}</h3><p class="review-evidence"><span>거주 불편</span>${e}</p><p class="review-question">${q}</p><p class="review-detail">${d}</p></div></article>`).join('')}</div></div><footer><span>중대형평면 개발 · KICK-OFF / 개발 관점 제안</span><span>04 / 9</span></footer></section>`;
+const section=`<section class="slide lh-slide review-view" id="slide-4"><header><span>LH · MODULAR HOUSING</span><span>DEVELOPMENT PERSPECTIVES</span></header><h2>${title}</h2><div class="slide-body lh-body"><p class="lead review-lead">소형 중심의 모듈러를 넘어, 3~4인 가구가 선택하는 중대형 상품으로</p><div class="review-grid">${items.map(([n,t,e,q,d])=>`<article><p class="review-number">${n}</p><div><h3>${t}</h3><p class="review-evidence"><span>현재 한계</span>${e}</p><p class="review-question">${q}</p><p class="review-detail">${d}</p></div></article>`).join('')}</div></div><footer><span>중대형평면 개발 · KICK-OFF / 개발 관점 제안</span><span>04 / 9</span></footer></section>`;
 const css=`
 #slide-4.review-view{background:#F5F7FA;color:#283442}
 #slide-4.review-view>h2{color:#17324D}

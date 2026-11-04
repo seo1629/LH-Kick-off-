@@ -38,6 +38,7 @@ const css=`
 .lh-slide .lh-org-top{background:#007F78;color:#FFFFFF}
 .lh-slide .lh-org-lead,.lh-slide .lh-org-teams article{background:#A9D3D2;color:#17324D}
 .lh-slide .lh-org h3{font-weight:700;color:inherit}
+.lh-slide .lh-org-lead h3+h3,.lh-slide .lh-org-teams article h3+h3{font-weight:400}
 .lh-slide .lh-org-stem{background:#17324D}
 .ov-cards p+p{margin-top:12px}
 .ov-cards small{font-size:.85em;color:#61758A}
@@ -48,7 +49,9 @@ const css=`
 #slide-2 .lh-cards h3{font-size:24px;margin:4px 0 8px}
 #slide-2 .lh-cards p{font-size:19px;line-height:1.45}
 #slide-2 .lh-table th{padding:12px 20px}
-#slide-2 .lh-table td{font-size:21px;line-height:1.45;padding:12px 20px}
+#slide-2 .lh-table td{font-size:21px;line-height:1.4;padding:8px 20px;vertical-align:middle}
+#slide-2 .lh-table tbody tr{height:107px}
+#slide-2 .lh-table{flex:1 1 auto;height:1px}
 #slide-9 .lh-table th:nth-child(1){width:22%}
 #slide-9 .lh-table th:nth-child(2){width:45%}
 #slide-9 .lh-table td{height:62px;padding:0 20px}

@@ -5,7 +5,7 @@ const path=require('node:path');
 // white cards with a teal top rule, #283442 table headers with #E8EEF4 banding, teal org chart, no footer.
 // Palette: 기본 #17324D, 강조 #007F78, 본문 #283442, 보조 #61758A / #B86A08, 보조 배경 #E8EEF4.
 const project='LH 모듈러주택 중대형평면 개발 연구용역';
-const cover=`<section class="slide lh-slide cover-view" id="slide-1"><div class="cv"><p class="cv-project">${project}</p><h2 class="cv-title">KICK-OFF</h2><p class="cv-sub">3·4 모듈 조합으로 만드는 중대형 주거</p><p class="cv-date">2026.11.XX</p></div></section>`;
+const cover=`<section class="slide lh-slide cover-view" id="slide-1"><div class="cv"><p class="cv-project">${project}</p><h2 class="cv-title">KICK-OFF</h2><p class="cv-sub">3·4 모듈 조합으로 만드는 중대형 주거</p><p class="cv-date">2026.11.11</p><a class="cv-download" href="files/LH_Kickoff_Report_261111.pdf" download="LH 중대형 표준평면 Kick-off보고서(261111).pdf">보고서 PDF 다운로드</a></div></section>`;
 const font='<link id="lh-tone-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">';
 const css=`
 .lh-slide{background:#F5F7FA!important;color:#283442;font-family:'Noto Sans KR',Deck,'Apple SD Gothic Neo',sans-serif}
@@ -24,6 +24,9 @@ const css=`
 .cover-view .cv-title{margin:28px 0 0;font-size:118px!important;line-height:1.05!important;font-weight:700!important;letter-spacing:.01em}
 .cv-sub{margin:10px 0 0;font-size:34px;line-height:1.4}
 .cv-date{position:absolute;left:0;right:0;bottom:165px;margin:0;text-align:center;font-size:34px}
+.cv-download{position:absolute;left:88px;bottom:72px;display:inline-flex;align-items:center;gap:10px;margin:0;padding:10px 22px;background:transparent;border:1px solid #61758A;color:#17324D!important;font-size:20px;font-weight:400;text-decoration:none;border-radius:2px;z-index:2}
+.cv-download:before{content:'';width:12px;height:12px;border:solid #17324D;border-width:0 0 2px 0;background:linear-gradient(#17324D,#17324D) center/2px 9px no-repeat;margin-top:-3px}
+.cv-download:hover{border-color:#17324D;background:rgba(23,50,77,.04)}
 .lh-slide .lh-cards article{background:#FFFFFF;border-top:4px solid #007F78;padding:24px 26px}
 #slide-2 .lh-cards article:nth-child(3){background:#DCEBEE}
 .lh-slide .lh-tag{font-size:17px;letter-spacing:.04em;color:#61758A}

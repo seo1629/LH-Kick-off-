@@ -22,5 +22,11 @@ http.createServer((req, res) => {
     const target = path.resolve(__dirname, '.' + name);
     if (target.startsWith(assets + path.sep) && types[path.extname(target).toLowerCase()]) return send(res, req, target, types[path.extname(target).toLowerCase()]);
   }
+  // downloadable report PDFs linked from the cover (files/*.pdf)
+  if (name.startsWith('/files/')) {
+    const files = path.join(__dirname, 'files');
+    const target = path.resolve(__dirname, '.' + name);
+    if (target.startsWith(files + path.sep) && path.extname(target).toLowerCase() === '.pdf') return send(res, req, target, 'application/pdf');
+  }
   res.writeHead(404); res.end('Not found');
 }).listen(port, '127.0.0.1', () => console.log(`Local: http://127.0.0.1:${port}/`));

@@ -7,7 +7,7 @@ const items=[
  ['03','접합·구조','결로·단열','퀵커넥터 등 접합 공법, 내화·구조 계획, 설비 모듈화','기밀·단열·차음을 접합 상세의 기준으로 삼고, 설비 배관·전기·통신 배선의 모듈화를 함께 계획합니다.'],
  ['04','마감','실내 이질감','공장 제작률 70% 이상을 고려한 바닥·벽체 마감재 제안','기둥·보와 모듈 경계가 드러나지 않도록 벽체와 수납으로 정리하고, 공장 완성 범위를 높입니다.']
 ];
-const section=`<section class="slide lh-slide review-view" id="slide-4"><header><span>LH · MODULAR HOUSING</span><span>DEVELOPMENT PERSPECTIVES</span></header><h2>${title}</h2><div class="slide-body lh-body"><p class="lead review-lead">소형 중심의 모듈러를 넘어, 3~4인 가구가 선택하는 중대형 상품으로</p><div class="review-grid">${items.map(([n,t,e,q,d])=>`<article><p class="review-number">${n}</p><div><h3>${t}</h3><p class="review-evidence"><span>현재 한계</span>${e}</p><p class="review-question">${q}</p><p class="review-detail">${d}</p></div></article>`).join('')}</div></div><footer><span>중대형평면 개발 · KICK-OFF / 개발 관점 제안</span><span>04 / 9</span></footer></section>`;
+const section=`<section class="slide lh-slide review-view" id="slide-4"><header><span>LH · MODULAR HOUSING</span><span>DEVELOPMENT PERSPECTIVES</span></header><h2>${title}</h2><div class="slide-body lh-body"><p class="lead review-lead">소형 중심의 모듈러를 넘어, 3~4인 가구가 선택하는 중대형 상품으로</p><div class="review-grid">${items.map(([n,t,e,q,d])=>`<article><p class="review-number">${n}</p><div><h3>${t}</h3><p class="review-question">${q}</p><p class="review-detail">${d}</p></div></article>`).join('')}</div></div><footer><span>중대형평면 개발 · KICK-OFF / 개발 관점 제안</span><span>04 / 9</span></footer></section>`;
 const css=`
 #slide-4.review-view{background:#F5F7FA;color:#283442}
 #slide-4.review-view>h2{color:#17324D}

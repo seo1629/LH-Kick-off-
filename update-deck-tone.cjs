@@ -5,7 +5,7 @@ const path=require('node:path');
 // white cards with a teal top rule, #283442 table headers with #E8EEF4 banding, teal org chart, no footer.
 // Palette: 기본 #17324D, 강조 #007F78, 본문 #283442, 보조 #61758A / #B86A08, 보조 배경 #E8EEF4.
 const project='LH 모듈러주택 중대형평면 개발 연구용역';
-const cover=`<section class="slide lh-slide cover-view" id="slide-1"><div class="cv"><p class="cv-project">${project}</p><h2 class="cv-title">KICK-OFF</h2><p class="cv-sub">3·4 모듈 조합으로 만드는 중대형 주거</p><p class="cv-date">2026.11.12</p><a class="cv-download" href="files/LH_Kickoff_Report_261111.pdf" download="LH 중대형 표준평면 Kick-off보고서(261111).pdf">보고서 PDF 다운로드</a></div></section>`;
+const cover=`<section class="slide lh-slide cover-view" id="slide-1"><div class="cv"><p class="cv-project">${project}</p><h2 class="cv-title">KICK-OFF</h2><p class="cv-sub">3·4 모듈 조합으로 만드는 중대형 주거</p><p class="cv-date">2026.11.12</p><a class="cv-download" href="files/LH_Kickoff_Report_261112.pdf" download="LH 중대형 표준평면 Kick-off보고서(261112).pdf">보고서 PDF 다운로드</a></div></section>`;
 const font='<link id="lh-tone-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">';
 const css=`
 .lh-slide{background:#F5F7FA!important;color:#283442;font-family:'Noto Sans KR',Deck,'Apple SD Gothic Neo',sans-serif}

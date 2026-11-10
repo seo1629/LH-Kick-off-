@@ -3,7 +3,7 @@ const path=require('node:path');
 // Slide 7: project organisation. LH and the lead sit over the SC사업실 team panel;
 // 건축주택사업본부 supports from the right through a two-way arrow.
 // Order and team tags follow the rev03 PPTX: grouped by home team.
-const teams=[['건축','이동건','SC수행팀'],['견적','허남수','SC수행팀'],['구조','김민경','SC기술팀'],['MEP','박지수','SC기술팀'],['제작','정재욱','시흥거모TF']];
+const teams=[['건축','이동건','SC수행팀'],['견적','허남수','SC수행팀'],['구조','김민경','SC기술팀'],['MEP','박재영','SC기술팀'],['제작','정재욱','시흥거모TF']];
 const support=['건축 주택<br>디자인팀','신상품 전략팀'];
 const arrow=`<svg viewBox="0 0 90 30" aria-hidden="true"><path d="M0 15 14 2v8h62V2l14 13-14 13v-8H14v8z" fill="#17324D"/></svg>`;
 const section=`<section class="slide lh-slide og-view" id="slide-7"><header><span>LH 모듈러주택 중대형평면 개발 연구용역</span><span>PROJECT ORGANIZATION</span></header><h2>과업 수행 조직 및 역할</h2><div class="slide-body lh-body"><div class="og"><div class="og-main"><div class="og-top"><b>LH</b><b>담당부서/담당자</b></div><i class="og-stem"></i><div class="og-lead"><b>과업 총괄</b><span>서혜원</span></div><i class="og-stem"></i><div class="og-panel"><p class="og-name">SC사업실</p>${teams.map(([r,n,t])=>`<article><em class="og-tag">${t}</em><b>${r}</b><span>${n}</span></article>`).join('')}</div></div><div class="og-link"><span>지원</span>${arrow}</div><div class="og-side"><div class="og-panel og-sup"><p class="og-name">건축주택사업본부</p>${support.map(t=>`<article><b>${t}</b></article>`).join('')}</div></div></div></div><footer><span>중대형평면 개발 · KICK-OFF / 협의용 초안</span><span>07 / 9</span></footer></section>`;
